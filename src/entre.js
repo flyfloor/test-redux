@@ -19,11 +19,19 @@ const enhancer = compose(
 
 const store = createStore(userReducer, enhancer, applyMiddleware(thunk))
 
+if (module.hot) {
+  // Enable Webpack hot module replacement for reducers
+  module.hot.accept('./reducer/user', () => {
+    const nextRootReducer = require('./reducer/user').default
+    store.replaceReducer(nextRootReducer)
+  })
+}
+
 export class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                <UserTableContainer></UserTableContainer>
+                <UserTableContainer/>
             </Provider>
         );
     }
