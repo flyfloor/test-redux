@@ -4,4 +4,4 @@ import ChartMonitor from 'redux-devtools-chart-monitor';
 
 export default createDevTools(
   <ChartMonitor />
-);
+)

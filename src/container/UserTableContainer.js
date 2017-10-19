@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import DevTools from './DevTools';
 import UserListTable from '../component/UserListTable';
 import UserForm from '../component/UserForm';
 import { 
@@ -54,16 +53,18 @@ const mapStateToProps = state => {
     }
 }
 
+const mapDispatchToProps = {
+    fetchUserList,
+    showCreateUser,
+    showEditUser,
+    hideCreateUser,
+    deleteUser,
+    updateUserField,
+    updateUserCitiesField,
+    createOrUpdateUser,
+}
+
 export default connect(
     mapStateToProps, 
-    {
-        fetchUserList,
-        showCreateUser,
-        showEditUser,
-        hideCreateUser,
-        deleteUser,
-        updateUserField,
-        updateUserCitiesField,
-        createOrUpdateUser,
-    }
+    mapDispatchToProps,
 )(UserTableContainer)

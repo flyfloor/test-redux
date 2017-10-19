@@ -29,10 +29,12 @@ const mapStateToProps = state => {
     }
 }
 
+const mapDispatchToProps = {
+    increase,
+    decrease,
+}
+
 export default connect(
     mapStateToProps,
-    {
-        increase,
-        decrease,
-    }
+    mapDispatchToProps,
 )(CounterContainer)
