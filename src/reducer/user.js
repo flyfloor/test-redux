@@ -89,7 +89,7 @@ const userReducer = (state=initUserState, action) => {
             // update
             return updateHelper(state, {
                 users: { $set: state.users.map(item => item.id === user.id ? Object.assign({}, user) : item) },
-                showCreate: { $set: false},
+                showCreate: { $set: false },
                 updateUser: { $set: Object.assign({}, defaultUpdateUser) }
             })
         // fetch user list
