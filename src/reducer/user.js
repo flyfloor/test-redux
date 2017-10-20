@@ -41,7 +41,7 @@ const initUserState = {
 }
 
 
-const userReducer = (state=initUserState, action) => {
+export default (state=initUserState, action) => {
     switch (action.type) {
         // delete user
         case DELETE_USER:
@@ -109,7 +109,3 @@ const userReducer = (state=initUserState, action) => {
             return state
     }
 }
-
-export default combineReducers({
-    userReducer
-})

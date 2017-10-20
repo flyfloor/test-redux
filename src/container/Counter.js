@@ -25,7 +25,7 @@ const CounterContainer = props => {
 
 const mapStateToProps = state => {
     return {
-        count: state.counterReducer.count
+        count: state.counterState.count
     }
 }
 

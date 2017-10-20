@@ -23,9 +23,7 @@ export class UserTableContainer extends Component {
     render() {
         return (
             <article>
-                <section>
-                    <button onClick={this.props.showCreateUser}>add</button>
-                </section>
+                <button onClick={this.props.showCreateUser}>add</button>
                 <UserListTable 
                     {...this.props} 
                     onEditUser={user => this.props.showEditUser(user)} 
@@ -44,7 +42,7 @@ export class UserTableContainer extends Component {
 }
 
 const mapStateToProps = state => {
-    const { users, loading, showCreate, updateUser } = state.userReducer
+    const { users, loading, showCreate, updateUser } = state.userState
     return {
         users,
         loading,
