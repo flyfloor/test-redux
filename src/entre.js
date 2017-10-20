@@ -10,13 +10,23 @@ import UserTableContainer from './container/UserTableContainer';
 import Counter from './container/Counter';
 import DevTools from './container/DevTools';
 
+const enhancer = compose(
+    applyMiddleware(thunk),
+    DevTools.instrument(),
+    persistState(
+        window.location.href.match(
+            /[?&]debug_session=([^&#]+)\b/
+        )
+    )
+)
+
 const store = createStore(
     userReducer, 
-    applyMiddleware(thunk),
+    enhancer,
 )
 const counterStore = createStore(
     counterReducer, 
-    applyMiddleware(thunk),
+    enhancer,
 )
 
 if (module.hot) {
@@ -24,6 +34,10 @@ if (module.hot) {
   module.hot.accept('./reducer/user', () => {
     const nextRootReducer = require('./reducer/user').default
     store.replaceReducer(nextRootReducer)
+  })
+  module.hot.accept('./reducer/counter', () => {
+    const nextRootReducer = require('./reducer/counter').default
+    counterStore.replaceReducer(nextRootReducer)
   })
 }
 
@@ -39,7 +53,9 @@ export class App extends Component {
                 </Provider>
                 <br/>
                 <Provider store={counterStore}>
-                    <Counter/>
+                    <div>
+                        <Counter/>
+                    </div>
                 </Provider>
             </div>
         );
